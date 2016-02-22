@@ -1,0 +1,25 @@
+application: score-group
+version: ajax
+runtime: python34
+api_version: 1
+threadsafe: yes
+
+libraries:
+- name: MySQLdb
+  version: "latest"
+- name: PIL
+  version: "latest"
+- name: ssl
+  version: "latest"
+
+handlers:
+- url: /static/
+  static_dir: _build/
+
+- url: .*
+  script: ajax.application
+  secure: always
+
+env_variables:
+  DJANGO_SETTINGS_MODULE: 'ajax.settings'
+
